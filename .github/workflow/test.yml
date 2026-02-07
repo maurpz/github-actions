@@ -7,10 +7,10 @@ on:
       - "src/**"
 jobs:
   cat-text:
-  runs-on: ubuntu-latest
-  steps:
-    - name: checkout del codigo
-      uses: actions/checkout@v4
-      
-    - name: cat del archivo
-      run: cat src/text1.txt
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout del codigo
+        uses: actions/checkout@v4
+
+      - name: cat del archivo
+        run: cat src/text1.txt
