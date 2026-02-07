@@ -11,5 +11,6 @@ jobs:
   steps:
     - name: checkout del codigo
       uses: actions/checkout@v4
+      
     - name: cat del archivo
       run: cat src/text1.txt
