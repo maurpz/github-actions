@@ -3,8 +3,7 @@ name: Practiva de eventos
 on:
   push:
     branches: ["master"]
-    paths:
-      - "src/**"
+
 jobs:
   cat-text:
     runs-on: ubuntu-latest
