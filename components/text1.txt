@@ -1,1 +1,2 @@
-texto en componentes 1
+texto en componentes
+cambio 1
