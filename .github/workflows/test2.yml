@@ -2,7 +2,7 @@ name: actions en components
 
 on:
   push:
-    branches: ["main"]
+    branches: ["master"]
     paths:
       -"components/**"
 
