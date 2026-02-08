@@ -1,0 +1,25 @@
+name: actions en components
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      -"components/**"
+
+jobs:
+  show-hash:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout of code
+        uses: actions/checkout@v4
+
+      - name: Mostar el contenido de la carpeta con cat
+        run: cat components/text1.txt
+
+      - name: Imprimir el hash completo del commit
+        run: echo "El hash del commit es ${{ github.sha }}"
+
+      - name: Generar un hash corto
+        run: | 
+          SHA_SHORT=$(echo ${{ github.sha }} | cut -c1-7)
+          echo "El hash corto es : $SHA_SHORT"
