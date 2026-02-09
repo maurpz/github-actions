@@ -1,0 +1,15 @@
+name: deployment
+
+on:
+  workflow_run:
+    workflows: ["actions en components"]
+    types:
+      - completed
+jobs:
+  deploy-test:
+    runs-on: ubuntu-latest
+
+    if: ${{github.event.workflow_run.conclusion == 'success'}}
+    steps:
+      - name: SHA corto
+        run: echo "VERSION=$(echo${{github.event.workflow_run.head_sha}} | cut -c1-c7)" >> $GITHUB_ENV
