@@ -12,4 +12,18 @@ jobs:
     if: ${{github.event.workflow_run.conclusion == 'success'}}
     steps:
       - name: SHA corto
-        run: echo "VERSION=$(echo${{github.event.workflow_run.head_sha}} | cut -c1-c7)" >> $GITHUB_ENV
+        run: echo "VERSION=$(echo ${{github.event.workflow_run.head_sha}} | cut -c1-7)" >> $GITHUB_ENV
+      
+      - name: Conect to server via ssh
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.SSH_USER}}
+          key: ${{secrets.SSH_KEY}}
+          envs: VERSION
+          script: |
+            #crear una nueva carpeta
+            mkdir -p ~/test && cd ~/test
+
+            echo "action dispara por el commit -$VERSION" >> prueva1.txt
+            cat prueva1.txt
