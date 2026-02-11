@@ -1,2 +1,2 @@
 texto en componentes
-cambio 5.1 - para deploy
+cambio 6 - para deploy

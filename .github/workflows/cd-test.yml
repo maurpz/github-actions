@@ -14,13 +14,15 @@ jobs:
       - name: SHA corto
         run: echo "VERSION=$(echo ${{github.event.workflow_run.head_sha}} | cut -c1-7)" >> $GITHUB_ENV
       
+      - name: Copy code
+        uses: actions/checkout@v4
+      
       - name: Conect to server via ssh
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{secrets.SSH_HOST}}
           username: ${{secrets.SSH_USER}}
           key: ${{secrets.SSH_KEY}}
-          passphrase: ${{secrets.SSH_PASSPHRASE}}
           envs: VERSION
           script: |
             #crear una nueva carpeta
@@ -28,3 +30,14 @@ jobs:
 
             echo "action dispara por el commit -$VERSION" >> prueva1.txt
             cat prueva1.txt
+      
+      - name: Enviar hola.txt via SSH
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.SSH_USER}}
+          key: ${{secrets.SSH_KEY}}
+          source: "hola.txt,nginx/nginx_v1.txt"
+          target: ~/test/
+
+          
